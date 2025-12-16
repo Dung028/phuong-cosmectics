@@ -644,61 +644,7 @@ function Home() {
         <div className="min-h-64 overflow-hidden rounded-2xl bg-[url('https://images.unsplash.com/photo-1495546968767-f0573cca821e?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center" />
       </section>
 
-      {/* Routine builder */}
-      <section id="routine-section" className="reveal-on-scroll space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-semibold text-rose-500">Routine Builder</p>
-            <h2 className="font-display text-2xl font-bold text-slate-900">Sáng & Tối</h2>
-            <p className="text-sm text-slate-600">Gợi ý nhanh, dễ áp dụng, ưu tiên dịu nhẹ.</p>
-          </div>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          {[
-            {
-              title: 'Morning',
-              color: 'from-rose-50 to-white',
-              steps: morningSteps,
-              link: '/blog/blog-routine-morning',
-              img:
-                morningPost?.cover ||
-                'https://images.unsplash.com/photo-1491369767546-6510e1e5b8a7?auto=format&fit=crop&w=900&q=80',
-            },
-            {
-              title: 'Night',
-              color: 'from-cyan-50 to-white',
-              steps: nightSteps,
-              link: '/blog/blog-routine-night',
-              img:
-                nightPost?.cover ||
-                'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=80',
-            },
-          ].map((routine) => (
-            <Link
-              key={routine.title}
-              to={routine.link}
-              className={`hover-lift block overflow-hidden rounded-2xl bg-gradient-to-br ${routine.color} shadow-md ring-1 ring-slate-100 transition hover:shadow-lg`}
-            >
-              <div className="h-40 w-full bg-cover bg-center sm:h-48" style={{ backgroundImage: `url(${routine.img})` }} />
-              <div className="p-5">
-                <div className="mb-3 flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-slate-900">{routine.title}</h3>
-                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">5 bước</span>
-                </div>
-                <ul className="space-y-2 text-sm text-slate-700">
-                  {routine.steps.map((step) => (
-                    <li key={step} className="flex items-start gap-2">
-                      <span className="mt-1 inline-block h-2 w-2 rounded-full bg-rose-400" />
-                      {step}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 text-xs font-semibold text-rose-600">Đọc chi tiết →</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      
 
       {/* Featured products */}
       <section id="products-section" className="reveal-on-scroll space-y-4">
