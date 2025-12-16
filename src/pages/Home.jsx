@@ -23,6 +23,111 @@ function Home() {
   const [cosmecticsPopupPos, setCosmecticsPopupPos] = useState({ x: 0, y: 0, rotation: 0, above: true })
   const location = useLocation()
 
+  // SEO Metadata cho trang chủ
+  useEffect(() => {
+    // Cập nhật title
+    document.title = 'Phương Cosmectics - Clean Beauty & Lifestyle | Skincare Routine Sáng Tối'
+
+    // Tạo hoặc cập nhật meta tags
+    const metaTags = {
+      description: 'Phương Cosmectics - Không gian beauty & lifestyle với routine dịu nhẹ, sản phẩm tinh gọn từ L\'Oréal Paris. Clean beauty, tối giản bước, phục hồi hàng rào da. Bộ sưu tập curated cho sáng & tối kèm hướng dẫn chi tiết.',
+      keywords: 'Phương Cosmectics, clean beauty, skincare routine, L\'Oréal Paris, routine sáng tối, serum, kem dưỡng, makeup, haircare, beauty lifestyle, skincare Việt Nam, da nhạy cảm, hàng rào da, tối giản skincare',
+      author: 'Phương Cosmectics',
+      robots: 'index, follow',
+      'og:title': 'Phương Cosmectics - Clean Beauty & Lifestyle | Skincare Routine Sáng Tối',
+      'og:description': 'Không gian beauty & lifestyle với routine dịu nhẹ, sản phẩm tinh gọn từ L\'Oréal Paris. Clean beauty, tối giản bước, phục hồi hàng rào da.',
+      'og:image': 'https://i.pinimg.com/1200x/cb/9b/a4/cb9ba48306608f283a51cc76836b1db1.jpg',
+      'og:url': window.location.href,
+      'og:type': 'website',
+      'og:site_name': 'Phương Cosmectics',
+      'og:locale': 'vi_VN',
+      'twitter:card': 'summary_large_image',
+      'twitter:title': 'Phương Cosmectics - Clean Beauty & Lifestyle',
+      'twitter:description': 'Không gian beauty & lifestyle với routine dịu nhẹ, sản phẩm tinh gọn từ L\'Oréal Paris.',
+      'twitter:image': 'https://i.pinimg.com/1200x/cb/9b/a4/cb9ba48306608f283a51cc76836b1db1.jpg',
+    }
+
+    // Hàm helper để tạo hoặc cập nhật meta tag
+    const setMetaTag = (name, content, property = false) => {
+      const attribute = property ? 'property' : 'name'
+      let meta = document.querySelector(`meta[${attribute}="${name}"]`)
+      if (!meta) {
+        meta = document.createElement('meta')
+        meta.setAttribute(attribute, name)
+        document.head.appendChild(meta)
+      }
+      meta.setAttribute('content', content)
+    }
+
+    // Áp dụng tất cả meta tags
+    Object.entries(metaTags).forEach(([key, value]) => {
+      const isProperty = key.startsWith('og:') || key.startsWith('twitter:')
+      setMetaTag(key, value, isProperty)
+    })
+
+    // Thêm canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.setAttribute('rel', 'canonical')
+      document.head.appendChild(canonical)
+    }
+    canonical.setAttribute('href', window.location.origin + '/')
+
+    // Cập nhật lang attribute
+    document.documentElement.setAttribute('lang', 'vi')
+
+    // Thêm Structured Data (JSON-LD) cho SEO
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Phương Cosmectics',
+      description: 'Không gian beauty & lifestyle với routine dịu nhẹ, sản phẩm tinh gọn từ L\'Oréal Paris',
+      url: window.location.origin,
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: window.location.origin + '/products?search={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    }
+
+    // Thêm Organization schema
+    const organizationData = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Phương Cosmectics',
+      description: 'Clean beauty, tối giản bước, phục hồi hàng rào da. Bộ sưu tập curated cho sáng & tối kèm hướng dẫn chi tiết.',
+      url: window.location.origin,
+      logo: window.location.origin + '/logo11.png',
+      sameAs: [],
+    }
+
+    // Xóa structured data cũ nếu có
+    const oldScripts = document.querySelectorAll('script[type="application/ld+json"]')
+    oldScripts.forEach((script) => script.remove())
+
+    // Thêm structured data mới
+    const script1 = document.createElement('script')
+    script1.type = 'application/ld+json'
+    script1.textContent = JSON.stringify(structuredData)
+    document.head.appendChild(script1)
+
+    const script2 = document.createElement('script')
+    script2.type = 'application/ld+json'
+    script2.textContent = JSON.stringify(organizationData)
+    document.head.appendChild(script2)
+
+    // Cleanup function để xóa meta tags khi component unmount (nếu cần)
+    return () => {
+      // Xóa structured data khi component unmount
+      const scripts = document.querySelectorAll('script[type="application/ld+json"]')
+      scripts.forEach((script) => script.remove())
+    }
+  }, [])
+
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll('.reveal-on-scroll'))
     const observer = new IntersectionObserver(
