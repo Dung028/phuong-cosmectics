@@ -90,6 +90,14 @@ a {
   transform: translateY(0);
 }
 
+/* Make reveal animations non-blocking on small screens (improve mobile visibility) */
+@media (max-width: 640px) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 .tilt-card {
   transition: transform 180ms ease, box-shadow 180ms ease;
   will-change: transform;
