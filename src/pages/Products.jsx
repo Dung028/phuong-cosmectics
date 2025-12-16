@@ -105,8 +105,19 @@ function Products() {
         </div>
       </div>
 
+      <div className="flex items-center justify-between md:hidden">
+        <button
+          type="button"
+          onClick={() => setShowFiltersMobile((s) => !s)}
+          className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 focus:border-rose-400 focus:outline-none"
+        >
+          Bộ lọc
+        </button>
+        <div className="text-sm text-slate-600">{filteredProducts.length} sản phẩm</div>
+      </div>
+
       <div className="grid gap-4 rounded-2xl bg-slate-50/80 p-4 md:grid-cols-4">
-        <div className="space-y-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-100 md:order-1 order-2">
+        <div className="space-y-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-100 md:order-1 order-2 hidden md:block">
           <p className="text-sm font-semibold text-slate-900">Bộ lọc</p>
           <input
             value={search}
@@ -162,6 +173,36 @@ function Products() {
         </div>
 
         <div className="md:col-span-3 md:order-2 order-1">
+          {/* Mobile collapsible filters */}
+          {showFiltersMobile && (
+            <div className="mb-4 block md:hidden space-y-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Tìm theo tên, brand, tag..."
+                className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-rose-400 focus:outline-none"
+              />
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-500">Danh mục</label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-rose-400 focus:outline-none"
+                >
+                  <option value="all">Tất cả</option>
+                  {categories.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => setShowFiltersMobile(false)} className="flex-1 rounded-xl bg-white/90 border px-3 py-2 text-sm">Đóng</button>
+                <button onClick={() => setShowFiltersMobile(false)} className="flex-1 rounded-xl bg-rose-500 text-white px-3 py-2 text-sm">Áp dụng</button>
+              </div>
+            </div>
+          )}
           <div className="mb-4 flex items-center justify-between text-sm text-slate-600">
             <span>{filteredProducts.length} sản phẩm phù hợp</span>
             <span>Dữ liệu mock {products.length} sản phẩm để test UI</span>

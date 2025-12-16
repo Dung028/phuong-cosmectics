@@ -15,7 +15,7 @@ function ProductCard({ product }) {
         <img
           src={product.image}
           alt={product.name}
-          className="h-56 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+          className="h-44 sm:h-56 w-full object-cover transition duration-300 group-hover:scale-[1.02]"
           loading="lazy"
         />
         <div className="absolute left-3 top-3 flex gap-2">
