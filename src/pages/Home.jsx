@@ -6,7 +6,7 @@ import ProductCard from '../components/ProductCard'
 import { blogPosts, brands, products, categories } from '../data/mockData'
 
 function Home() {
-  const featuredProducts = products.slice(0, 6)
+  const featuredProducts = products.slice(0, 15) // Hiển thị đủ 15 sản phẩm
   const featuredBlogs = blogPosts.slice(0, 3)
   const morningSteps = ['Làm sạch dịu nhẹ', 'Toner cấp ẩm', 'Serum sáng da', 'Kem dưỡng mỏng nhẹ', 'Chống nắng SPF']
   const nightSteps = ['Tẩy trang / double cleanse', 'Toner cân bằng', 'Serum treatment nhẹ', 'Kem dưỡng phục hồi', 'Mặt nạ ngủ (2-3 lần/tuần)']
@@ -381,8 +381,9 @@ function Home() {
                   <div className="mb-3 h-40 w-full rounded-xl bg-slate-50 flex items-center justify-center overflow-hidden">
                     <img
                       src={cosmecticsLetterProductMap[cosmecticsHoveredLetter].image}
-                      alt={cosmecticsLetterProductMap[cosmecticsHoveredLetter].name}
+                      alt={`${cosmecticsLetterProductMap[cosmecticsHoveredLetter].name} - ${cosmecticsLetterProductMap[cosmecticsHoveredLetter].category} L'Oréal Paris tại Phương Cosmectics`}
                       className="max-h-full max-w-full object-contain"
+                      loading="lazy"
                     />
                   </div>
                   <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -473,8 +474,9 @@ function Home() {
           <div className="relative overflow-hidden rounded-3xl bg-white/85 p-6 shadow-lg ring-1 ring-rose-100">
             <img
               src="https://i.pinimg.com/736x/02/dc/c4/02dcc4d1f689fc340df773cd0fceb997.jpg"
-              alt="Glow tone backdrop"
+              alt="Beauty lifestyle - Phong cách sống dịu nhẹ với skincare routine và mỹ phẩm L'Oréal Paris"
               className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-white/45 via-white/35 to-cyan-50/20" />
             <p className="text-sm font-semibold text-rose-500">Số liệu nhanh</p>
@@ -512,8 +514,16 @@ function Home() {
           <h2 className="font-display text-2xl font-bold text-slate-900">Phương Cosmectics</h2>
           <p className="text-slate-700">
             Một không gian beauty & lifestyle kể chuyện sống đẹp: routine dịu nhẹ, sản phẩm tinh gọn,
-            blog truyền cảm hứng, và bộ sưu tập curated của L’Oréal Paris. Chúng tôi ưu tiên trải nghiệm
-            thực tế, dễ áp dụng, tôn trọng hàng rào da và thời gian của bạn.
+            blog truyền cảm hứng, và bộ sưu tập curated của L'Oréal Paris. Chúng tôi ưu tiên trải nghiệm
+            thực tế, dễ áp dụng, tôn trọng hàng rào da và thời gian của bạn. Khám phá{' '}
+            <Link to="/products" className="font-semibold text-rose-600 hover:text-rose-700 underline">
+              bộ sưu tập sản phẩm skincare và makeup
+            </Link>{' '}
+            hoặc đọc{' '}
+            <Link to="/blog" className="font-semibold text-rose-600 hover:text-rose-700 underline">
+              các bài viết hướng dẫn skincare routine
+            </Link>{' '}
+            để tìm hiểu thêm.
           </p>
           <div className="grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
             <div className="hover-lift rounded-2xl bg-rose-50 px-4 py-3">
@@ -545,8 +555,9 @@ function Home() {
         <div className="overflow-hidden rounded-2xl bg-slate-100">
           <img
             src="https://i.pinimg.com/1200x/cc/3d/9e/cc3d9e61abc91165eca40004d07bd33f.jpg"
-            alt="Glow & Blog studio"
+            alt="Phương Cosmectics - Không gian beauty & lifestyle với sản phẩm skincare và makeup L'Oréal Paris chất lượng cao"
             className="h-full w-full object-cover"
+            loading="lazy"
           />
         </div>
       </section>
@@ -695,7 +706,7 @@ function Home() {
           <div>
             <p className="text-sm font-semibold text-rose-500">Featured</p>
             <h2 className="font-display text-2xl font-bold text-slate-900">Curated picks</h2>
-            <p className="text-sm text-slate-600">Ít nhưng chất, hợp vibe sáng - tối.</p>
+            <p className="text-sm text-slate-600">Bộ sưu tập đầy đủ 15 sản phẩm L'Oréal Paris chất lượng.</p>
           </div>
             <Link to="/products" className="hover-lift text-sm font-semibold text-rose-600 hover:text-rose-700">
             Xem tất cả →
@@ -765,11 +776,12 @@ function Home() {
             {hoverProduct || filteredProducts[0] ? (
               <div className="space-y-3">
                 <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow">
-                  <img
-                    src={(hoverProduct || filteredProducts[0]).image}
-                    alt={(hoverProduct || filteredProducts[0]).name}
-                    className="h-full w-full object-cover"
-                  />
+                    <img
+                      src={(hoverProduct || filteredProducts[0]).image}
+                      alt={`${(hoverProduct || filteredProducts[0]).name} - ${(hoverProduct || filteredProducts[0]).category} L'Oréal Paris mua tại Phương Cosmectics`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-500">
@@ -802,10 +814,20 @@ function Home() {
             Xem blog →
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {featuredBlogs.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
+        {/* Layout 2 cột: Featured post bên trái, 2 small posts bên phải */}
+        <div className="grid gap-4 md:grid-cols-[1fr_0.8fr]">
+          {/* Featured post - Cột trái */}
+          <div>
+            {featuredBlogs[0] && (
+              <BlogCard key={featuredBlogs[0].id} post={featuredBlogs[0]} variant="featured" />
+            )}
+          </div>
+          {/* Small posts - Cột phải */}
+          <div className="flex flex-col gap-4">
+            {featuredBlogs.slice(1, 3).map((post) => (
+              <BlogCard key={post.id} post={post} variant="small" />
+            ))}
+          </div>
         </div>
       </section>
 
