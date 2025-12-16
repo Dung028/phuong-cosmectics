@@ -26,7 +26,7 @@ function Blog() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-sm font-semibold text-rose-500">Lifestyle Blog</p>
-          <h1 className="text-3xl font-bold text-slate-900">Bộ sưu tập 80 bài viết</h1>
+          <h1 className="text-3xl font-bold text-slate-900">Bộ sưu tập 3 bài viết</h1>
         </div>
         <div className="flex flex-wrap gap-3">
           <select
