@@ -81,7 +81,6 @@ function Home() {
     const structuredData = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: 'Phương Cosmectics',
       description: 'Không gian beauty & lifestyle với routine dịu nhẹ, sản phẩm tinh gọn từ L\'Oréal Paris',
       url: window.location.origin,
       potentialAction: {
@@ -98,7 +97,6 @@ function Home() {
     const organizationData = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'Phương Cosmectics',
       description: 'Clean beauty, tối giản bước, phục hồi hàng rào da. Bộ sưu tập curated cho sáng & tối kèm hướng dẫn chi tiết.',
       url: window.location.origin,
       logo: window.location.origin + '/logo11.png',
@@ -341,7 +339,7 @@ function Home() {
         />
         <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-24 pb-14 sm:px-10 sm:pt-28 md:px-16 md:pt-32 lg:px-20">
           <div className="space-y-4 text-white">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-100">Phương Cosmetics</p>
+            {/* preheading removed */}
               <div className="leading-[1.6] relative pb-4">
                 <div
                   className="font-impact uppercase tracking-[0.02em] drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)] text-left text-[24vw] sm:text-[20vw] md:text-[18vw] lg:text-[16vw] -ml-8 sm:-ml-8 md:-ml-16 lg:-ml-20 whitespace-nowrap"

@@ -26,6 +26,7 @@ function Products() {
   const [tag, setTag] = useState('all')
   const [priceRange, setPriceRange] = useState('all')
   const [sort, setSort] = useState('newest')
+  const [showFiltersMobile, setShowFiltersMobile] = useState(false)
 
   // đọc category từ query ?category=...
   useEffect(() => {
